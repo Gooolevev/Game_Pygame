@@ -28,7 +28,7 @@ class BaseObjectDef(BaseModel):
     is_fire: bool = True
     passable: bool = False
 
-    visual_size: tuple[int, int] = (24, 24)
+    visual_size: tuple[int, int] = (28, 28)
     image_path: str
 
 
@@ -41,10 +41,14 @@ class BaseTileDef(BaseModel):
     can_plant: bool = False
     can_build: bool = True
 
-    visual_size: tuple[int, int] = (24, 24)
-    image_path: str
+    max_hp: float = 0.0
+    work_type: str ="None"
+    loot: dict[str, int] = {"None": 0}
+    is_fire: bool = False
+    passable: bool = True
 
-    visual_size: tuple[int, int] = (24, 24)
+
+    visual_size: tuple[int, int] = (30, 30)
     image_path: str
 
 
@@ -81,12 +85,12 @@ class SkillData(BaseModel):
 class BasePawnSkillsDef(BaseModel):
     """Базовый набор навыков колониста"""
 
-    shooting: SkillData = SkillData(name="Стрельба",level=0,xp=0.0)
-    melee: SkillData = SkillData(name="Ближний бой",level=0,xp=0.0)
-    construction: SkillData = SkillData(name="Строительство",level=0,xp=0.0)
-    mining: SkillData = SkillData(name="Горное дело",level=0,xp=0.0)
-    cooking: SkillData = SkillData(name="Кулинария",level=0,xp=0.0)
-    medicine: SkillData = SkillData(name="Медицина",level=0,xp=0.0)
+    shooting: SkillData = SkillData(name="Стрельба", level=0, xp=0.0)
+    melee: SkillData = SkillData(name="Ближний бой", level=0, xp=0.0)
+    construction: SkillData = SkillData(name="Строительство", level=0, xp=0.0)
+    mining: SkillData = SkillData(name="Горное дело", level=0, xp=0.0)
+    cooking: SkillData = SkillData(name="Кулинария", level=0, xp=0.0)
+    medicine: SkillData = SkillData(name="Медицина", level=0, xp=0.0)
 
 
 class BasePawnDef(BaseModel):
@@ -96,11 +100,11 @@ class BasePawnDef(BaseModel):
     name: str
 
     base_health: int = Field(default=100, ge=0)
-    base_speed: float = Field(default=2.5, gt=0.1)
+    base_speed: float = Field(default=0.5, gt=0.1)
     speed_work: float = Field(default=5, gt=0.1)
     inventory_slots: int = Field(default=10, ge=0)
 
     skills: BasePawnSkillsDef
 
-    visual_size: tuple[int, int] = (24, 24)
+    visual_size: tuple[int, int] = (30, 30)
     image_path: str = ("pawn_1.png",)

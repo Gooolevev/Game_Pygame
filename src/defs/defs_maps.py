@@ -1,25 +1,15 @@
 from src.defs.models import BaseObjectDef, BaseTileDef
 
 TREE_DEF = BaseObjectDef(
-    id="tree_oak",
+    id="tree",
     name="Oak Tree",
     max_hp=100,
     work_type="chopping",
     loot={"wood": 5},
     is_fire=True,
     passable=False,
-    image_path="tree_oak.png",
-)
-
-ROCK_DEF = BaseObjectDef(
-    id="rock_granite",
-    name="Granite Rock",
-    max_hp=250,
-    work_type="mining",
-    loot={"stone": 5},
-    is_fire=False,
-    passable=False,
-    image_path="rock_granite.png",
+    visual_size=(64, 96),
+    image_path="tree.png",
 )
 
 WALL_WOOD_DEF = BaseObjectDef(
@@ -80,6 +70,20 @@ PLOWLAND_DEF = BaseTileDef(
     image_path="plowland.png",
 )
 
+ROCK_DEF = BaseTileDef(
+    id="rock_granite",
+    name="Granite Rock",
+    walk_speed=1.0,
+    can_plant=False,
+    can_build=False,
+    max_hp=250,
+    work_type="mining",
+    loot={"stone": 5},
+    is_fire=False,
+    passable=False,
+    image_path="rock_granite.png",
+)
+
 
 OBJECT_MAP = {
     "tree": TREE_DEF,
@@ -93,4 +97,5 @@ TILES_MAP = {
     "water": WATER_DEF,
     "sand": SAND_DEF,
     "plowland": PLOWLAND_DEF,
+    "rock_granite": ROCK_DEF,
 }
