@@ -1,13 +1,12 @@
-from pydantic import BaseModel, Field, PositiveInt
+from pydantic import BaseModel, Field
 
 
 class BaseItemDef(BaseModel):
-    """Базовая схема для любого предмета (дрова, камень, сталь, ...)"""
+    """Basic class for any items (wood, stone, steel ...)"""
 
     id: str
     name: str
 
-    stack_limit: int = Field(default=75, gt=0)
     weight: float = Field(default=0.1, ge=0)
     nutrition: float = Field(default=0.0, ge=0)
     category: str = "resource"
@@ -17,7 +16,7 @@ class BaseItemDef(BaseModel):
 
 
 class BaseObjectDef(BaseModel):
-    """Базовая схема для любого объекта на карте (дерево, скала, стена, ...)"""
+    """Basic class for any objects in the map (tree, rock, wall, ...)"""
 
     id: str
     name: str
@@ -25,7 +24,6 @@ class BaseObjectDef(BaseModel):
     work_type: str
     loot: dict[str, int] = Field(default_factory=dict)
 
-    is_fire: bool = True
     passable: bool = False
 
     visual_size: tuple[int, int] = (28, 28)
@@ -33,18 +31,16 @@ class BaseObjectDef(BaseModel):
 
 
 class BaseTileDef(BaseModel):
-    """Базовая схема для любого типа клетки на карте (почва, песок, вода, ...)"""
+    """Basic class for any type tiles in the map (почва, песок, вода, ...)"""
 
     id: str
     name: str
     walk_speed: float = 1.0
-    can_plant: bool = False
     can_build: bool = True
 
     max_hp: float = 0.0
     work_type: str ="None"
     loot: dict[str, int] = {"None": 0}
-    is_fire: bool = False
     passable: bool = True
 
 
@@ -53,7 +49,7 @@ class BaseTileDef(BaseModel):
 
 
 class BaseRecipeDef(BaseModel):
-    """Базовая схема для готовки блюд"""
+    """Basic class for cooking dishes"""
 
     id: str
     name: str
@@ -64,7 +60,7 @@ class BaseRecipeDef(BaseModel):
 
 
 class BaseBuildingDef(BaseModel):
-    """Базовая схема для строительства"""
+    """Basic class in construction"""
 
     id: str
     name: str
@@ -75,7 +71,7 @@ class BaseBuildingDef(BaseModel):
 
 
 class SkillData(BaseModel):
-    """Базовая схема для навыков колониста"""
+    """Basic class for colonist skill progression"""
 
     name: str
     level: int = Field(default=0, ge=0, le=20)
@@ -83,7 +79,7 @@ class SkillData(BaseModel):
 
 
 class BasePawnSkillsDef(BaseModel):
-    """Базовый набор навыков колониста"""
+    """Basic сlass for colonist skills"""
 
     shooting: SkillData = SkillData(name="Стрельба", level=0, xp=0.0)
     melee: SkillData = SkillData(name="Ближний бой", level=0, xp=0.0)
@@ -94,7 +90,7 @@ class BasePawnSkillsDef(BaseModel):
 
 
 class BasePawnDef(BaseModel):
-    """Базовая схема для любого колониста на карте"""
+    """A basic class for any colonist on the map"""
 
     id: str
     name: str
@@ -102,7 +98,6 @@ class BasePawnDef(BaseModel):
     base_health: int = Field(default=100, ge=0)
     base_speed: float = Field(default=0.5, gt=0.1)
     speed_work: float = Field(default=5, gt=0.1)
-    inventory_slots: int = Field(default=10, ge=0)
 
     skills: BasePawnSkillsDef
 

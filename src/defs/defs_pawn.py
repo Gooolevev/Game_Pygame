@@ -6,7 +6,6 @@ PAWN_0 = BasePawnDef(
     base_health=100,
     base_speed=0.5,
     speed_work=4,
-    inventory_slots=10,
     skills=BasePawnSkillsDef(
         shooting=SkillData(name="Стрельба", level=0, xp=0.0),
         melee=SkillData(name="Ближний бой", level=2, xp=0.0),
@@ -25,7 +24,6 @@ PAWN_1 = BasePawnDef(
     base_health=100,
     base_speed=0.5,
     speed_work=4,
-    inventory_slots=10,
     skills=BasePawnSkillsDef(
         shooting=SkillData(name="Стрельба", level=5, xp=0.0),
         melee=SkillData(name="Ближний бой", level=15, xp=0.0),
@@ -44,7 +42,6 @@ PAWN_2 = BasePawnDef(
     base_health=100,
     base_speed=0.5,
     speed_work=4,
-    inventory_slots=10,
     skills=BasePawnSkillsDef(
         shooting=SkillData(name="Стрельба", level=1, xp=0.0),
         melee=SkillData(name="Ближний бой", level=0, xp=0.0),
