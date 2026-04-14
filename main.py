@@ -60,11 +60,8 @@ class SelectionManager:
 class OrderSystem:
     pass
 
-
-def main():
+if __name__ == "__main__":
     game = Game()
-
-if __name__=="__main__":
-    main()
+    game.run()
 
 
