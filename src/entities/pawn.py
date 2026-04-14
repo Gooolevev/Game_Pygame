@@ -1,10 +1,7 @@
 import math
-from src.core.game_map import GameMap
-from src.defs.models import BasePawnDef
-
 
 class Pawn:
-    def __init__(self, pawn_id: str, x: float, y: float, definition: BasePawnDef):
+    def __init__(self, pawn_id: str, x: float, y: float, definition):
         self.pawn_id = pawn_id
         self.def_data = definition
 
@@ -17,7 +14,7 @@ class Pawn:
         self.path = []
         self.target_tile = None
 
-    def update(self, tick: float, game_map: GameMap):
+    def update(self, tick: float, game_map):
         """Logic updates (AI and movement)"""
         self._update_needs(tick)
         self._move(tick)

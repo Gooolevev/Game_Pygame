@@ -1,4 +1,6 @@
 import pygame
+import pygame_gui
+from pygame_gui.elements import UIPanel, UILabel, UIStatusBar
 import os
 import sys
 from config.settings import *

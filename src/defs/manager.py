@@ -27,7 +27,20 @@ class DefManager:
                 img = pygame.transform.scale(img, d.visual_size)
                 self.images[d.id] = img
             except Exception as e:
-                print(f"⚠️ Нет картинки для {d.id}: {e}")      
+                self.images[d.id] = self._generate_fallback(d)
+                print(f"⚠️ Нет картинки для {d.id}: {e}")    
+
+    def _generate_fallback(self, d):
+        w, h = d.visual_size
+        surf = pygame.Surface((w, h), pygame.SRCALPHA)  
+        
+        if "rock" in d.id:
+            cx, cy = w // 2, h // 2
+            r = min(cx, cy) - 2
+            pygame.draw.circle(surf, (75, 75, 85), (cx, cy), r)          # Основа
+            pygame.draw.circle(surf, (55, 55, 65), (cx - 4, cy + 3), r - 4) # Тень
+            pygame.draw.circle(surf, (95, 95, 105), (cx + 4, cy - 4), r - 6)# Блик
+            return surf
 
     def get_image(self, def_id) -> pygame.Surface:
         return self.images.get(def_id)

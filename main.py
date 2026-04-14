@@ -13,8 +13,8 @@ from pathfinding.core.grid import Grid
 from pathfinding.finder.a_star import AStarFinder
 
 from src import ITEMS, TILES_MAP, OBJECT_MAP, PAWNS, BUILD, COOK, image
+from src.core.game import Game
 from config import settings
-from src.core.logger_config import game_logger as logger
 
 
 class Pawn:
@@ -61,6 +61,10 @@ class OrderSystem:
     pass
 
 
-class Game:
-    pass
+def main():
+    game = Game()
+
+if __name__=="__main__":
+    main()
+
 
