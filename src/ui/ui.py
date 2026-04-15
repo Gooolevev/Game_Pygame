@@ -1,9 +1,8 @@
+from config.settings import TEXT, NAME, BAR_BG, BAR_OK, BAR_WARN, STATUS, BG, SCREEN_WIDTH, SCREEN_HEIGHT
+
 import pygame
 import pygame_gui
 from pygame_gui.elements import UIPanel, UILabel, UIStatusBar
-import os
-import sys
-from config.settings import *
 
 
 class UIManager:
@@ -20,8 +19,8 @@ class UIManager:
 
         panel_rect = pygame.Rect(
             self.margin,
-            self.screen_w - self.panel_h - self.margin,
-            self.screen_h - self.margin * 2,
+            self.screen_h - self.panel_h - self.margin,
+            self.screen_w - self.margin * 2,
             self.panel_h,
         )
 
@@ -60,3 +59,5 @@ class UIManager:
         screen.blit(font.render("ПКМ — движение", True, NAME), (self.screen_w - 260, base_y  + 4))
         screen.blit(small_font.render("WASD — камера | ПКМ — идти | ЛКМ — выбрать", True, STATUS), 
                     (self.screen_w - 420, panel_rect.y + 36))
+        
+    

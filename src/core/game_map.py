@@ -1,6 +1,10 @@
 import array
 import random
 from opensimplex import OpenSimplex
+from config.settings import WORLD_HEIGHT, WORLD_WIDTH
+from src.defs.defs_pawn import PAWNS
+from entities.pawn import Pawn
+
 
 
 class GameMap:
@@ -17,7 +21,7 @@ class GameMap:
     def get_index(self, x, y):
         return self.width * x + y
     
-    def generate(self):
+    def _generate(self):
         gen = OpenSimplex(seed=random.randint(1, 99999))
         scale = 60.0
         
@@ -40,6 +44,18 @@ class GameMap:
                 
                 if noise > 0.1 and random.random() < 0.04 and self.tile[index] != 4:
                     self.objects[index] = self.defs.obj_str_to_int["rock"]
+
+    def _spawn_initial_colonists(self):
+        cx, cy = WORLD_WIDTH // 2, WORLD_HEIGHT // 2
+        start_pos = [(cx, cy),(cx + 1, cy),(cx + 2, cy)]
+        new_colonist = []
+
+        for i, (px, py) in enumerate(start_pos):
+            pawn_def = PAWNS[f"pawn_{i}"]
+            new_pawn = Pawn(f"colonist_{i}", px, py, pawn_def)
+            new_colonist.append(new_pawn)
+            
+        return new_colonist
                 
     def is_valid(self, x, y):
         return 0 <= x < self.width and 0 <= y < self.height

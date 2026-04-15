@@ -37,9 +37,9 @@ class DefManager:
         if "rock" in d.id:
             cx, cy = w // 2, h // 2
             r = min(cx, cy) - 2
-            pygame.draw.circle(surf, (75, 75, 85), (cx, cy), r)          # Основа
-            pygame.draw.circle(surf, (55, 55, 65), (cx - 4, cy + 3), r - 4) # Тень
-            pygame.draw.circle(surf, (95, 95, 105), (cx + 4, cy - 4), r - 6)# Блик
+            pygame.draw.circle(surf, (75, 75, 85), (cx, cy), r)
+            pygame.draw.circle(surf, (55, 55, 65), (cx - 4, cy + 3), r - 4)
+            pygame.draw.circle(surf, (95, 95, 105), (cx + 4, cy - 4), r - 6)
             return surf
 
     def get_image(self, def_id) -> pygame.Surface:

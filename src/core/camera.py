@@ -22,9 +22,9 @@ class Camera:
         self.y = target_y * self.tile_size - self.screen_height // 2
         self.clamp()
     
-    def move(self, distance_x: float, distance_y: float) -> None:
-        self.x += distance_x
-        self.y += distance_y
+    def move(self, delta_x: float, delta_y: float) -> None:
+        self.x += delta_x
+        self.y += delta_y
         self.clamp()
     
     def clamp(self) -> None:

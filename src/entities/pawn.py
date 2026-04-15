@@ -27,9 +27,7 @@ class Pawn:
         if not self.path:
             return
 
-        print(
-            f"Pawn {self.pawn_id} moving to {self.path[0]}, now in ({self.x:.2f}, {self.y:.2f})"
-        )
+        print(f"Pawn {self.pawn_id} moving to {self.path[0]}, now in ({self.x:.2f}, {self.y:.2f})")
 
         tx, ty = self.path[0]
         dx = tx - self.x
@@ -44,3 +42,9 @@ class Pawn:
         else:
             self.x += (dx / dist) * speed
             self.y += (dy / dist) * speed
+
+    def covers_point(self, wx, wy):
+        dx = (self.x + 0.5) - wx
+        dy = (self.y + 0.5) - wy
+        distance = math.hypot(dx, dy)
+        return distance < 0.6

@@ -20,10 +20,38 @@ class Game:
         self.running = True
 
         self.defs = DefManager()
-        self.game_map = GameMap(WORLD_WIDTH, WORLD_HEIGHT, self.defs)
-        self.camera = Camera()
-        self.pathfinder = Pathfinder(self.game_map)
-        self.ui_manager = UIManager()
 
+        self.game_map = GameMap(WORLD_WIDTH, WORLD_HEIGHT, self.defs)
+
+        self.ui_manager = UIManager()
+        self.ui_font = pygame.font.SysFont("arial", 18, bold=True)
+        self.small_ui_font = pygame.font.SysFont("arial", 14, bold=True)
+        self.resources = {"wood": 0, "stone": 0, "food": 0}
+
+        self.camera = Camera(SCREEN_WIDTH, SCREEN_HEIGHT, TILE_SIZE, WORLD_WIDTH, WORLD_HEIGHT)
+        self.camera.follow(WORLD_WIDTH // 2, WORLD_HEIGHT // 2)
+
+        self.pawns = self.game_map._spawn_initial_colonists()
+        self.selected_pawns = self.pawns[0]
+        self.pathfinder = Pathfinder(self.game_map)
+
+        self.show_fps = True
+        self.debug_text = []
+
+    def get_pawn_at(self, mouse_x, mouse_y):
+        wx = (mouse_x + self.camera.x) / TILE_SIZE
+        wy = (mouse_y + self.camera.y) / TILE_SIZE
+
+        for pawn in self.pawns:
+            if pawn.covers_point(wx, wy):
+                return pawn
+        
+        return None
+
+        
+
+
+    def run(self):
+        pass
 
 
