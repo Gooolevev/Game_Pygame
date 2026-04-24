@@ -16,50 +16,6 @@ from src import ITEMS, TILES_MAP, OBJECT_MAP, PAWNS, BUILD, COOK, image
 from src.core.game import Game
 from config import settings
 
-
-class Pawn:
-    pass
-
-
-class Stats:
-    pass
-
-
-class Inventory:
-    pass
-
-
-class TaskManager:
-    pass
-
-
-class Tile:
-    pass
-
-
-class GameMap:
-    pass
-
-
-class Camera:
-    pass
-
-
-class Item:
-    pass
-
-
-class Building:
-    pass
-
-
-class SelectionManager:
-    pass
-
-
-class OrderSystem:
-    pass
-
 if __name__ == "__main__":
     game = Game()
     game.run()
